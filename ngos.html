@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container py-5">
+<h1 class="fw-bold">NGO Directory</h1>
+<p class="text-secondary">Registered NGOs on the platform.</p>
+<div class="row g-4 mt-2">
+{% for ngo in ngos %}
+<div class="col-md-4"><div class="card p-4 h-100"><div class="icon-box mb-3"><i class="bi bi-building-heart"></i></div><h5>{{ ngo.name }}</h5><p>{{ ngo.address or 'Address not provided' }}</p><p><i class="bi bi-telephone"></i> {{ ngo.phone or 'Not provided' }}</p><a href="{{ url_for('login') }}" class="btn btn-outline-primary">Login</a></div></div>
+{% else %}
+<div class="col-12"><div class="alert alert-info">No NGO registered yet.</div></div>
+{% endfor %}
+</div>
+</div>
+{% endblock %}

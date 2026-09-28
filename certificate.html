@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container py-5">
+<div class="certificate text-center">
+<p class="text-uppercase fw-bold text-primary">Certificate of Appreciation</p>
+<h1 class="display-5 fw-bold">Volunteer Impact Certificate</h1>
+<p class="lead mt-4">This certificate is presented to</p>
+<h2 class="fw-bold">{{ current_user.name }}</h2>
+<p>for supporting community donation pickups and helping connect donors with NGOs.</p>
+<div class="row justify-content-center mt-4"><div class="col-md-4"><div class="bg-light rounded-4 p-3"><strong>{{ profile.points }}</strong><br>Impact Points</div></div><div class="col-md-4"><div class="bg-light rounded-4 p-3"><strong>{{ profile.badge }}</strong><br>Badge</div></div></div>
+<button class="btn btn-primary mt-5" onclick="window.print()">Print / Save as PDF</button>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container py-5">
+<div class="row justify-content-center"><div class="col-lg-7">
+<div class="card p-4 p-md-5">
+<h2>Upload Distribution Proof</h2>
+<p class="text-secondary">Donation #{{ donation.id }} — {{ donation.product_name }}</p>
+<form method="post" enctype="multipart/form-data">
+<div class="mb-3"><label class="form-label">Distribution Image *</label><input class="form-control" type="file" name="image" accept="image/*" required></div>
+<div class="mb-3"><label class="form-label">People Helped</label><input class="form-control" type="number" min="0" name="people_helped" value="0"></div>
+<div class="mb-3"><label class="form-label">Impact Caption</label><textarea class="form-control" name="caption" rows="4" placeholder="Example: Food packets distributed to 25 families."></textarea></div>
+<button class="btn btn-success w-100">Upload & Mark Distributed</button>
+</form>
+</div></div></div>
+</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container py-5">
+<div class="dashboard-header mb-4">
+<div class="d-flex justify-content-between align-items-center flex-wrap gap-2"><div><span class="text-success fw-bold">DONOR DASHBOARD</span><h1 class="fw-bold mb-1">Welcome, {{ current_user.name }}</h1><p class="text-secondary mb-0">See your donations and the people helped.</p></div><a href="{{ url_for('donate') }}" class="btn btn-primary">+ Donate</a></div>
+</div>
+<div class="row g-4 mb-4">
+<div class="col-md-4"><div class="card stat-card p-4"><small>Total Donations</small><h2>{{ donations|length }}</h2></div></div>
+<div class="col-md-4"><div class="card stat-card p-4"><small>People Helped</small><h2>{{ total_people }}</h2></div></div>
+<div class="col-md-4"><div class="card stat-card p-4"><small>Impact</small><h2>Visible</h2></div></div>
+</div>
+<div class="card p-4 mb-4">
+<h4>Your Donations</h4>
+<div class="table-responsive"><table class="table align-middle">
+<thead><tr><th>Item</th><th>Type</th><th>Status</th><th>Payment</th><th>Action</th></tr></thead>
+<tbody>{% for d in donations %}<tr><td>{{ d.product_name }}</td><td>{{ d.donation_type|title }}</td><td><span class="status-pill">{{ d.status }}</span></td><td>{{ d.payment_status }}</td><td><a class="btn btn-sm btn-outline-primary" href="{{ url_for('tracking', donation_id=d.id) }}">Track</a></td></tr>{% else %}<tr><td colspan="5">No donations yet.</td></tr>{% endfor %}</tbody>
+</table></div>
+</div>
+<h3 class="fw-bold">Impact Gallery</h3>
+<div class="row g-4 mt-1">
+{% for p in proofs %}
+<div class="col-md-4"><div class="card p-3 h-100"><img class="proof-img" src="{{ url_for('static', filename='uploads/' ~ p.image_filename) }}"><div class="pt-3"><h5>{{ p.people_helped }} people helped</h5><p class="text-secondary mb-0">{{ p.caption or 'Impact update from NGO' }}</p></div></div></div>
+{% else %}<div class="col-12"><div class="alert alert-info">Your NGO impact photos will appear here after distribution proof is uploaded.</div></div>{% endfor %}
+</div>
+</div>
+{% endblock %}

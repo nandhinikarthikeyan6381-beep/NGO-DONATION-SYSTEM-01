@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+<div class="container">
+<div class="row align-items-center g-5">
+<div class="col-lg-7">
+<span class="badge text-bg-success mb-3">DONATE • PICKUP • DELIVER • IMPACT</span>
+<h1 class="hero-title">Turn every donation into a visible impact.</h1>
+<p class="lead mt-3">A simple platform where donors give, volunteers collect, NGOs receive and everyone can see the impact.</p>
+<div class="d-flex gap-2 flex-wrap mt-4">
+<a class="btn btn-primary btn-lg" href="{{ url_for('register') }}">Get Started</a>
+<a class="btn btn-outline-dark btn-lg" href="{{ url_for('features') }}">Explore Features</a>
+</div>
+</div>
+<div class="col-lg-5">
+<div class="card p-4">
+<h5><i class="bi bi-bar-chart-fill text-primary"></i> Live Impact Flow</h5>
+<div class="mt-3 p-3 rounded-4 bg-light">Donor → Volunteer Pickup → NGO → Distribution → Impact Proof</div>
+<div class="row g-3 mt-2">
+<div class="col-6"><div class="card p-3"><small>Pickups</small><h3>{{ available_pickups }}</h3></div></div>
+<div class="col-6"><div class="card p-3"><small>Transparency</small><h3>100%</h3></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="py-5">
+<div class="container">
+<div class="text-center mb-5"><span class="text-success fw-bold">ONE PLATFORM</span><h2 class="fw-bold">Everything connected</h2></div>
+<div class="row g-4">
+{% for icon,title,text in [
+('bi-people','Role Based Access','Separate dashboards for donors, volunteers and NGOs.'),
+('bi-qr-code','QR Money Donation','Enter any amount and generate a donation QR.'),
+('bi-geo-alt','Pickup Tracking','Donors provide pickup location and volunteers can view it.'),
+('bi-camera','Photo Proof','NGOs upload distribution images and impact counts.'),
+('bi-award','Volunteer Rewards','Points, badges and a printable certificate.'),
+('bi-graph-up-arrow','Impact Analytics','Donors can see how many people benefited.')
+] %}
+<div class="col-md-4"><div class="card feature-card h-100 p-4"><div class="icon-box mb-3"><i class="bi {{ icon }}"></i></div><h5>{{ title }}</h5><p class="text-secondary">{{ text }}</p></div></div>
+{% endfor %}
+</div>
+</div>
+</section>
+
+<section class="py-5 bg-white">
+<div class="container">
+<div class="text-center mb-4"><span class="text-success fw-bold">NGO NETWORK</span><h2 class="fw-bold">Featured NGOs</h2></div>
+<div class="row g-4">
+{% for ngo in ngos %}
+<div class="col-md-4"><div class="card p-4 h-100"><div class="icon-box mb-3"><i class="bi bi-building"></i></div><h5>{{ ngo.name }}</h5><p>{{ ngo.address or 'Location available after registration' }}</p><a href="{{ url_for('ngos') }}" class="btn btn-outline-primary">View NGOs</a></div></div>
+{% else %}
+<div class="col-12 text-center text-secondary">No NGOs registered yet. Register as an NGO to appear here.</div>
+{% endfor %}
+</div>
+</div>
+</section>
+{% endblock %}

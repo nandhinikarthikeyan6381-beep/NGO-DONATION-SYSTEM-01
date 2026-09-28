@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container py-5">
+<h1 class="fw-bold mb-4">Platform Features</h1>
+<div class="row g-4">
+{% for title,text in [
+("Donor Product Entry","Donors type the exact product name, quantity and description."),
+("Money Donation","Donors enter an amount and get a QR-based demo payment screen."),
+("Pickup Address","Pickup address and optional latitude/longitude are saved with the donation."),
+("Volunteer Alerts","Volunteer dashboard shows newly available donations."),
+("NGO Dashboard","Counts show volunteer registrations, onboarding, received items, pending pickup and distributed items."),
+("Distribution Proof","NGOs upload images, caption and number of people helped."),
+("Impact View","Donors see impact cards and images linked to their donations."),
+("Rewards","Volunteer points, badges and certificate encourage participation."),
+("Tracking","Every donation has a status timeline page.")
+] %}
+<div class="col-md-4"><div class="card p-4 h-100"><h5>{{ title }}</h5><p class="text-secondary">{{ text }}</p></div></div>
+{% endfor %}
+</div>
+</div>
+{% endblock %}

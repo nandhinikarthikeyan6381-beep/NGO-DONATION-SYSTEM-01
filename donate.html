@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block head %}<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">{% endblock %}
+{% block content %}
+<div class="container py-5">
+<div class="row justify-content-center"><div class="col-lg-8">
+<div class="card p-4 p-md-5">
+<h2 class="fw-bold">Make a Donation</h2>
+<p class="text-secondary">Give a product or contribute money.</p>
+<form method="post">
+<div class="mb-3"><label class="form-label">Donation Type</label><select id="donation_type" name="donation_type" class="form-select"><option value="product">Product Donation</option><option value="money">Money Donation</option></select></div>
+<div id="productFields">
+<div class="row">
+<div class="col-md-8 mb-3"><label class="form-label">Product Name *</label><input name="product_name" class="form-control" placeholder="Rice, blankets, books..."></div>
+<div class="col-md-4 mb-3"><label class="form-label">Quantity</label><input name="quantity" type="number" min="1" value="1" class="form-control"></div>
+</div>
+<div class="mb-3"><label class="form-label">Description</label><textarea name="description" class="form-control" rows="3" placeholder="Condition, size, useful details..."></textarea></div>
+</div>
+<div id="moneyFields" class="d-none">
+<div class="mb-3"><label class="form-label">Amount</label><input id="amount" name="amount" type="number" min="1" step="0.01" class="form-control" placeholder="Enter amount"></div>
+<div class="alert alert-success">Donation amount preview: <strong id="amountPreview">₹ 0</strong></div>
+</div>
+<div class="mb-3"><label class="form-label">Pickup Address</label><textarea name="pickup_address" class="form-control" rows="3" placeholder="Volunteer will use this address for pickup"></textarea></div>
+<div class="row">
+<div class="col-md-6 mb-3"><label class="form-label">Latitude (optional)</label><input name="latitude" class="form-control" placeholder="e.g. 13.0827"></div>
+<div class="col-md-6 mb-3"><label class="form-label">Longitude (optional)</label><input name="longitude" class="form-control" placeholder="e.g. 80.2707"></div>
+</div>
+<div class="alert alert-info small">For real-time maps, provide latitude and longitude. The volunteer can then open the map link from the dashboard.</div>
+<button class="btn btn-primary btn-lg w-100">Continue</button>
+</form>
+</div></div></div>
+</div>
+{% endblock %}

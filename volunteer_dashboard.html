@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block head %}<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">{% endblock %}
+{% block content %}
+<div class="container py-5">
+<div class="dashboard-header mb-4">
+<div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+<div><span class="text-success fw-bold">VOLUNTEER DASHBOARD</span><h1 class="fw-bold">Hi, {{ current_user.name }}</h1><p class="mb-0 text-secondary">New donor pickups appear below as alerts.</p></div>
+<a class="btn btn-outline-primary" href="{{ url_for('certificate') }}"><i class="bi bi-award"></i> My Certificate</a>
+</div>
+</div>
+<div class="row g-4 mb-4">
+<div class="col-md-4"><div class="card p-4"><small>Points</small><h2>{{ profile.points }}</h2></div></div>
+<div class="col-md-4"><div class="card p-4"><small>Badge</small><h4 class="mt-2">{{ profile.badge }}</h4></div></div>
+<div class="col-md-4"><div class="card p-4"><small>Onboarding</small><h4 class="mt-2">{{ "Completed" if profile.onboarded else "Pending" }}</h4></div></div>
+</div>
+<div class="alert alert-warning"><i class="bi bi-bell-fill"></i> <strong>{{ pickups|length }}</strong> donor pickup alert(s) available.</div>
+<h3 class="fw-bold mb-3">Available Donor Pickups</h3>
+<div class="row g-4">
+{% for d in pickups %}
+<div class="col-lg-6">
+<div class="card p-4 h-100">
+<div class="d-flex justify-content-between"><h5>{{ d.product_name }}</h5><span class="status-pill">{{ d.status }}</span></div>
+<p class="text-secondary mb-2">Quantity: {{ d.quantity }}</p>
+<p>{{ d.description or 'No additional description.' }}</p>
+<p><strong>Pickup:</strong> {{ d.pickup_address or 'Address not provided' }}</p>
+{% if d.latitude and d.longitude %}
+<a target="_blank" class="btn btn-outline-primary mb-2" href="https://www.openstreetmap.org/?mlat={{ d.latitude }}&mlon={{ d.longitude }}#map=17/{{ d.latitude }}/{{ d.longitude }}"><i class="bi bi-geo-alt"></i> View Live Map Location</a>
+{% endif %}
+<form method="post" action="{{ url_for('volunteer_pickup', donation_id=d.id) }}">
+<button class="btn btn-success w-100" data-confirm="Have you reached the donor and picked up this product?">Confirm Pickup</button>
+</form>
+</div></div>
+{% else %}<div class="col-12"><div class="card p-5 text-center">No pickup alerts right now. New donor products will appear here.</div></div>{% endfor %}
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,43 @@
+body {
+    font-family: Inter, system-ui, -apple-system, Segoe UI, sans-serif;
+    background: #f7f9fc;
+    color: #172033;
+}
+.navbar-brand { font-weight: 800; color: #1769e0 !important; }
+.hero {
+    background: linear-gradient(135deg, #eaf4ff, #effcf5);
+    padding: 90px 0;
+}
+.hero-title { font-size: clamp(2.3rem, 5vw, 4.2rem); font-weight: 800; }
+.btn-primary { background:#1769e0; border-color:#1769e0; }
+.btn-success { background:#1d9a62; border-color:#1d9a62; }
+.card {
+    border: 0;
+    border-radius: 22px;
+    box-shadow: 0 12px 35px rgba(24, 40, 72, .08);
+}
+.feature-card { transition: .2s ease; }
+.feature-card:hover { transform: translateY(-5px); }
+.icon-box {
+    width: 58px; height: 58px; border-radius: 16px;
+    display:flex; align-items:center; justify-content:center;
+    background:#eaf2ff; color:#1769e0; font-size:25px;
+}
+.stat-card h2 { font-weight:800; }
+.dashboard-header { background:#fff; border-radius:24px; padding:28px; }
+.status-pill {
+    border-radius:999px; padding:6px 12px; font-size:12px; font-weight:700;
+    background:#edf3ff; color:#1769e0;
+}
+.map-box { height: 300px; border-radius: 18px; overflow:hidden; }
+.proof-img { width:100%; height:190px; object-fit:cover; border-radius:16px; }
+.certificate {
+    border: 8px double #1769e0;
+    background:#fff;
+    padding:60px 40px;
+    border-radius:20px;
+}
+footer { background:#111827; color:#cbd5e1; }
+@media(max-width:768px) {
+    .hero { padding:55px 0; }
+}

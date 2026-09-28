@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container py-5">
+<div class="row justify-content-center"><div class="col-md-7">
+<div class="card p-4 p-md-5 text-center">
+<h2>QR Donation Payment</h2>
+<p class="text-secondary">Donation #{{ donation.id }}</p>
+<h1 class="text-success">₹ {{ "%.2f"|format(donation.amount) }}</h1>
+<img src="{{ url_for('static', filename='qr/donation_' ~ donation.id ~ '.png') }}" class="img-fluid my-3" style="max-width:260px">
+<p class="small text-secondary">This is a demo QR. It does not move real money.</p>
+<form method="post"><button class="btn btn-success btn-lg">Mark Payment Successful</button></form>
+</div></div></div>
+</div>
+{% endblock %}
